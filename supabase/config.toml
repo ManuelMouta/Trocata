@@ -1,0 +1,26 @@
+# Configuração do projecto Supabase local (CLI).
+# project_id é o slug local; ligar ao projecto remoto com `supabase link`.
+project_id = "trocata"
+
+[db]
+port = 54322
+major_version = 15
+
+[api]
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[studio]
+port = 54323
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000"]
+# MVP: confirmação de email desactivada para não bloquear o wizard de registo
+# em 3 passos (reavaliar antes de produção).
+enable_confirmations = false
+
+[auth.email]
+enable_signup = true

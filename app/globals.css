@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Design System Trocata — tokens
+ * Alinhado com o design Stitch "The 2026 Collector's Suite":
+ * superfícies verde-claras (#f4fcf0), primário Verde Panini, Inter em tudo.
+ * Contrastes-alvo: WCAG 2.1 AA (≥4.5:1 texto normal).
+ */
+:root {
+  /* ---- Primário: Verde Panini (#00A651 CTAs / #006b32 texto) ---- */
+  --color-primary-50: #e6f7ee;
+  --color-primary-100: #c2ebd6;
+  --color-primary-200: #8fdcb4;
+  --color-primary-300: #5adf82;
+  --color-primary-400: #24b86c;
+  --color-primary-500: #00a651;
+  --color-primary-600: #008740;
+  --color-primary-700: #006b32;
+  --color-primary-800: #005225;
+  --color-primary-900: #00210b;
+  --color-primary-foreground: #ffffff;
+
+  /* ---- Secundário: Azul escuro (#1A3A5C) ---- */
+  --color-navy-50: #eef3f8;
+  --color-navy-100: #d3e0ec;
+  --color-navy-200: #a7c1d9;
+  --color-navy-300: #7099bf;
+  --color-navy-400: #3f6d97;
+  --color-navy-500: #1a3a5c;
+  --color-navy-600: #16324f;
+  --color-navy-700: #12293f;
+  --color-navy-800: #0d1f30;
+  --color-navy-900: #091622;
+  --color-navy-foreground: #ffffff;
+
+  /* ---- Acento Mundial 2026: Dourado (#C9A227) ---- */
+  --color-gold-50: #fbf6e7;
+  --color-gold-100: #f5e9bf;
+  --color-gold-200: #ecd485;
+  --color-gold-300: #e0bd4d;
+  --color-gold-400: #d4ad35;
+  --color-gold-500: #c9a227;
+  --color-gold-600: #a8851d;
+  --color-gold-700: #856819;
+  --color-gold-800: #634d16;
+  --color-gold-900: #443410;
+  --color-gold-foreground: #10151c;
+
+  /* ---- Acento Mundial 2026: Tinta/Preto (#10151C) ---- */
+  --color-ink-900: #10151c;
+
+  /* ---- Paleta festiva WC26 (emblema multicolor / cidades anfitriãs) ---- */
+  --color-wc-red: #e4002b;
+  --color-wc-blue: #0057ff;
+  --color-wc-yellow: #ffc72c;
+  --color-wc-purple: #8b2fc9;
+
+  /* ---- Alerta: Laranja (#FF6B35) ---- */
+  --color-alert-500: #ff6b35;
+  --color-alert-foreground: #ffffff;
+
+  /* ---- Erro: Vermelho (#E63946) ---- */
+  --color-danger-500: #e63946;
+  --color-danger-foreground: #ffffff;
+
+  /* ---- Neutros ---- */
+  --color-gray-50: #f8f9fa;
+  --color-gray-100: #e9ecef;
+  --color-gray-200: #dee2e6;
+  --color-gray-300: #ced4da;
+  --color-gray-400: #adb5bd;
+  --color-gray-500: #6c757d;
+  --color-gray-600: #495057;
+  --color-gray-700: #343a40;
+  --color-gray-800: #212529;
+  --color-gray-900: #16191c;
+
+  /* ---- Superfícies semânticas (light, Stitch: verde-tinted) ---- */
+  --color-background: #f4fcf0;
+  --color-foreground: #161d17;
+  --color-card: #ffffff;
+  --color-card-foreground: #161d17;
+  --color-muted: #e8f0e5;
+  --color-muted-foreground: #3d4a3e;
+  --color-border: #dde5da;
+  --color-input: #dde5da;
+  --color-ring: #00a651;
+  /* superfícies intermédias (Stitch surface-container-low/high) */
+  --color-surface-low: #eef6eb;
+  --color-surface-high: #e3eae0;
+
+  /* ---- Raios ---- */
+  --radius-input: 6px;
+  --radius-button: 8px;
+  --radius-card: 12px;
+
+  /* ---- Sombras ---- */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-card-hover: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.dark {
+  --color-background: #10151c;
+  --color-foreground: #e9ecef;
+  --color-card: #16191c;
+  --color-card-foreground: #e9ecef;
+  --color-muted: #212529;
+  --color-muted-foreground: #adb5bd;
+  --color-border: #343a40;
+  --color-input: #343a40;
+  --color-ring: #24b86c;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Títulos: Archivo bold (energia desportiva WC26). Corpo: Inter. */
+  h1, h2, h3, h4 {
+    font-family: var(--font-archivo), var(--font-inter), system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  /* fundo shimmer para skeletons/loading */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.5s infinite;
+  }
+  /* safe-area para bottom nav em mobile */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* ---- Linguagem visual WC26 ---- */
+  /* gradiente de marca (verde Panini -> azul elétrico) */
+  .bg-gradient-brand {
+    background-image: linear-gradient(
+      120deg,
+      var(--color-primary-600) 0%,
+      var(--color-primary-500) 35%,
+      var(--color-wc-blue) 100%
+    );
+  }
+  /* gradiente festivo (para faixas de celebração) */
+  .bg-gradient-festa {
+    background-image: linear-gradient(
+      110deg,
+      var(--color-wc-purple) 0%,
+      var(--color-wc-blue) 40%,
+      var(--color-primary-500) 100%
+    );
+  }
+  /* texto com gradiente */
+  .text-gradient-brand {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-primary-300) 0%,
+      var(--color-wc-yellow) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* quarto de círculo — forma do emblema 26 */
+  .shape-quarter {
+    border-radius: 0 100% 0 0;
+  }
+  .shape-quarter-bl {
+    border-radius: 0 0 0 100%;
+  }
+  /* título estilo cartaz desportivo */
+  .titulo-desportivo {
+    font-family: var(--font-archivo), sans-serif;
+    font-weight: 900;
+    font-style: italic;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+}
